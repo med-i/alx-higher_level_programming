@@ -4,7 +4,7 @@ import random
 number = random.randint(-10000, 10000)
 last_digit = -(abs(number) % 10) if number < 0 else number % 10
 result = (
-    "zero"
+    "0"
     if last_digit == 0
     else "greater than 5"
     if last_digit > 5
