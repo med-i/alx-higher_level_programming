@@ -2,4 +2,4 @@
 
 
 def islower(c):
-    return "a" <= c <= "z"
+    return ord(c) >= ord("a") and ord(c) <= ord("z")

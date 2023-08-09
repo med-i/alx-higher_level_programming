@@ -11,5 +11,5 @@ def fizzbuzz():
             else "Buzz"
             if i % 5 == 0
             else i,
-            end=" " if i < 100 else "",
+            end=" ",
         )
