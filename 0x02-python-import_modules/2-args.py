@@ -8,6 +8,10 @@ if __name__ == "__main__":
     if args_count == 1:
         print("0 arguments.")
     else:
-        print(f"{args_count - 1} arguments:")
+        print(
+            "{} {}:".format(
+                args_count - 1, "argument" if args_count == 2 else "arguments"
+            )
+        )
         for i, arg in enumerate(args[1:], 1):
             print(f"{i}: {arg}")
