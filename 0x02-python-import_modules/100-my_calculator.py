@@ -24,4 +24,4 @@ if __name__ == "__main__":
         print("Unknown operator. Available operators: +, -, * and /")
         exit(1)
 
-    print(f"{a} + {b} = {result}")
+    print(f"{a} {operator} {b} = {result}")
