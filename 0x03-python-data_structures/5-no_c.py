@@ -4,7 +4,7 @@
 def no_c(my_string):
     new_string = ""
     for idx, char in enumerate(my_string):
-        if char in ["c", "C"]:
-            new_string = my_string[:idx] + my_string[idx + 1 :]
+        if char not in ["c", "C"]:
+            new_string += char
 
     return new_string
