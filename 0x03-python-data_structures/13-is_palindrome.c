@@ -8,7 +8,7 @@
  */
 int is_palindrome(listint_t **head)
 {
-	listint_t *reversed, *temp, *original;
+	listint_t *reversed;
 	int is_palindrome = 1;
 
 	if (!head || !*head)
@@ -18,19 +18,16 @@ int is_palindrome(listint_t **head)
 	if (!reversed)
 		return (0);
 
-	original = *head;
-	temp = reversed;
-
-	while (original && temp)
+	while (*head && reversed)
 	{
-		if (original->n != temp->n)
+		if ((*head)->n != reversed->n)
 		{
 			is_palindrome = 0;
 			break;
 		}
 
-		original = original->next;
-		temp = temp->next;
+		(*head) = (*head)->next;
+		reversed = reversed->next;
 	}
 
 	free_listint(reversed);
