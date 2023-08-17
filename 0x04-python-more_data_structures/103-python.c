@@ -1,5 +1,9 @@
 #include <Python.h>
 
+/**
+ *  print_python_list - prints some basic info about Python lists.
+ * @p: PyObject
+ */
 void print_python_list(PyObject *p)
 {
 	Py_ssize_t size = PyList_Size(p);
@@ -20,6 +24,10 @@ void print_python_list(PyObject *p)
 	}
 }
 
+/**
+ *  print_python_bytes - prints some basic info about Python bytes.
+ * @p: PyObject
+ */
 void print_python_bytes(PyObject *p)
 {
 	Py_ssize_t size = PyBytes_Size(p), count, i;
@@ -35,14 +43,3 @@ void print_python_bytes(PyObject *p)
 		printf("%02x ", (unsigned char)string[i]);
 	printf("\n");
 }
-
-/*
-[.] bytes object info
-  size: 5
-  trying string: Hello
-  first 6 bytes: 48 65 6c 6c 6f 00
-[.] bytes object info
-  size: 8
-  trying string: �
-  first 9 bytes: ff f8 00 00 00 00 00 00 00
-*/
