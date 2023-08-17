@@ -15,19 +15,12 @@ def roman_to_int(roman_string):
         "M": 1000,
     }
 
-    subtractives = {
-        "IV": 4,
-        "IX": 9,
-        "XL": 40,
-        "XC": 90,
-        "CD": 400,
-        "CM": 900
-    }
+    subtractives = {"IV": 4, "IX": 9, "XL": 40, "XC": 90, "CD": 400, "CM": 900}
 
     integer = 0
     i = 0
     while i < len(roman_string):
-        sub = roman_string[i : i + 2]
+        sub = roman_string[i:i + 2]
         if sub in subtractives:
             integer += subtractives[sub]
             i += 2
