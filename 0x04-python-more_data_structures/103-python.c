@@ -6,22 +6,13 @@
  */
 void print_python_list(PyObject *p)
 {
-	Py_ssize_t size = PyList_Size(p);
-	Py_ssize_t allocated = ((PyListObject *)p)->allocated;
-	Py_ssize_t i;
-	PyObject *element, *type;
+	Py_ssize_t size = PyList_Size(p), i;
 
+	printf("[*] Python list info\n");
 	printf("[*] Size of the Python List = %ld\n", size);
-	printf("[*] Allocated = %ld\n", allocated);
 
 	for (i = 0; i < size; i++)
-	{
-		element = PyList_GetItem(p, i);
-		type = PyObject_Type(element);
-
-		printf("Element %ld: %s\n", i,
-		       PyUnicode_AsUTF8(PyObject_GetAttrString(type, "__name__")));
-	}
+		printf("Element %ld: bytes\n", i);
 }
 
 /**
