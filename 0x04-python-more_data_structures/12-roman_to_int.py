@@ -2,6 +2,9 @@
 
 
 def roman_to_int(roman_string):
+    if not roman_string:
+        return 0
+
     roman_numerals = {
         "M": 1000,
         "D": 500,
@@ -13,7 +16,8 @@ def roman_to_int(roman_string):
     }
 
     int = 0
-    for c in roman_string:
-        int += roman_numerals[c]
+    for key in roman_string:
+        if key in roman_numerals:
+            int += roman_numerals[key]
 
     return int
