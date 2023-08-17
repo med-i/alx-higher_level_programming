@@ -5,19 +5,27 @@ def roman_to_int(roman_string):
     if not roman_string:
         return 0
 
-    roman_numerals = {
-        "M": 1000,
-        "D": 500,
-        "C": 100,
-        "L": 50,
-        "X": 10,
-        "V": 5,
+    numerals = {
         "I": 1,
+        "V": 5,
+        "X": 10,
+        "L": 50,
+        "C": 100,
+        "D": 500,
+        "M": 1000,
     }
 
-    int = 0
-    for key in roman_string:
-        if key in roman_numerals:
-            int += roman_numerals[key]
+    subtractives = {"IV": 4, "IX": 9, "XL": 40, "XC": 90, "CD": 400, "CM": 900}
 
-    return int
+    integer = 0
+    i = 0
+    while i < len(roman_string):
+        sub = roman_string[i : i + 2]
+        if sub in subtractives:
+            integer += subtractives[sub]
+            i += 2
+        else:
+            integer += numerals.get(roman_string[i], 0)
+            i += 1
+
+    return integer
