@@ -13,7 +13,7 @@ class Square:
         """Instantiate the Square with size."
 
         Args:
-            __size(int, optional): The size of the square. Defaults to 0.
+            size(int, optional): The size of the square. Defaults to 0.
 
         Raises:
             TypeError: If size is not an integer.
@@ -25,9 +25,9 @@ class Square:
             raise ValueError("size must be >= 0")
         self.__size = size
 
-        def area(self):
-            """Returns the current square area.
+    def area(self):
+        """Calculates the area of the square.
 
-            Returns:
-                int: the area of the square."""
-            return self.__size**2
+        Returns:
+            int: the area of the square."""
+        return self.__size**2

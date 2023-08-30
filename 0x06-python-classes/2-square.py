@@ -13,7 +13,7 @@ class Square:
         """Instantiate the Square with size."
 
         Args:
-            __size(int, optional): The size of the square. Defaults to 0.
+            size(int, optional): The size of the square. Defaults to 0.
 
         Raises:
             TypeError: If size is not an integer.
