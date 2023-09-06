@@ -1,0 +1,68 @@
+>>> print_square = __import__('4-print_square').print_square
+
+Prints a square of size 4.
+>>> print_square(4)
+####
+####
+####
+####
+
+Prints a square of size 10.
+>>> print_square(10)
+##########
+##########
+##########
+##########
+##########
+##########
+##########
+##########
+##########
+##########
+
+Prints nothing for size 0.
+>>> print_square(0)
+
+Prints a square of size 1.
+>>> print_square(1)
+#
+
+Negative size.
+>>> print_square(-1)
+Traceback (most recent call last):
+...
+ValueError: size must be >= 0
+
+Float size.
+>>> print_square(4.5)
+Traceback (most recent call last):
+...
+TypeError: size must be an integer
+
+Negative float size.
+>>> print_square(-4.5)
+Traceback (most recent call last):
+...
+TypeError: size must be an integer
+
+Size as a string.
+>>> print_square("4")
+Traceback (most recent call last):
+...
+TypeError: size must be an integer
+
+Size as a list.
+>>> print_square([4])
+Traceback (most recent call last):
+...
+TypeError: size must be an integer
+
+Size as a dictionary.
+>>> print_square({'size': 4})
+Traceback (most recent call last):
+...
+TypeError: size must be an integer
+
+Size as a boolean.
+>>> print_square(True)
+#

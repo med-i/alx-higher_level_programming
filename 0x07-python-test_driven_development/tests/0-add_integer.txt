@@ -1,26 +1,29 @@
 >>> add_integer = __import__('0-add_integer').add_integer
 
+Add two integers.
 >>> add_integer(1, 2)
 3
 
->>> add_integer(100, -2)
-98
+Add an integer and a float.
+>>> add_integer(1, 2.5)
+3
 
->>> add_integer(2)
-100
+Add a float and an integer.
+>>> add_integer(1.5, 2)
+3
 
->>> add_integer(100.3, -2)
-98
+Using default value for b.
+>>> add_integer(1)
+99
 
->>> add_integer(-5, 100.4)
-95
-
->>> add_integer("School", 4)
+Raise TypeError if first argument is not int or float.
+>>> add_integer("100", 2)
 Traceback (most recent call last):
 ...
 TypeError: a must be an integer
 
->>> add_integer(4, "School")
+Raise TypeError if second argument is not int or float.
+>>> add_integer(100, "2")
 Traceback (most recent call last):
 ...
 TypeError: b must be an integer
@@ -29,3 +32,18 @@ TypeError: b must be an integer
 Traceback (most recent call last):
 ...
 TypeError: a must be an integer
+
+Adding negative numbers.
+>>> add_integer(-1, -2)
+-3
+
+Adding with zero.
+>>> add_integer(0, 5)
+5
+>>> add_integer(5, 0)
+5
+
+Adding large numbers.
+>>> add_integer(1e6, 2e6)
+3000000
+

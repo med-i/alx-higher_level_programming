@@ -1,0 +1,55 @@
+>>> say_my_name = __import__('3-say_my_name').say_my_name
+
+Prints a full name.
+>>> say_my_name("John", "Smith")
+My name is John Smith
+
+Only first name provided.
+>>> say_my_name("Bob")
+My name is Bob 
+
+Invalid first name type.
+>>> say_my_name(12, "White")
+Traceback (most recent call last):
+...
+TypeError: first_name must be a string
+
+Invalid last name type.
+>>> say_my_name("John", 12)
+Traceback (most recent call last):
+...
+TypeError: last_name must be a string
+
+Empty first name.
+>>> say_my_name("", "Doe")
+My name is  Doe
+
+Empty last name.
+>>> say_my_name("John", "")
+My name is John 
+
+Both names empty.
+>>> say_my_name("", "")
+My name is  
+
+First name is a list.
+>>> say_my_name(["John"], "Doe")
+Traceback (most recent call last):
+...
+TypeError: first_name must be a string
+
+Last name is a list.
+>>> say_my_name("John", ["Doe"])
+Traceback (most recent call last):
+...
+TypeError: last_name must be a string
+
+Both names are lists.
+>>> say_my_name(["John"], ["Doe"])
+Traceback (most recent call last):
+...
+TypeError: first_name must be a string
+
+Special characters in the name.
+>>> say_my_name("Jöhn", "Döe")
+My name is Jöhn Döe
