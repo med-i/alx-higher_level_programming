@@ -46,4 +46,3 @@ Adding with zero.
 Adding large numbers.
 >>> add_integer(1e6, 2e6)
 3000000
-

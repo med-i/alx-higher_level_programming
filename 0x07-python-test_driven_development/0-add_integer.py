@@ -25,5 +25,5 @@ def add_integer(a, b=98):
 
     try:
         return int(a) + int(b)
-    except:
-        raise OverflowError("Float overflow")
+    except OverflowError as e:
+        raise OverflowError("Float overflow") from e
