@@ -8,7 +8,7 @@ class Base:
     """Represents the base class for other shapes.
 
     Attributes:
-        id (int, optional): The id for the shape.
+        id (int, optional): The unique id for the shape.
     """
 
     __nb_objects = 0
