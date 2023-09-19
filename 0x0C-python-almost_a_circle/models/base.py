@@ -4,6 +4,8 @@ This module defines the Base class.
 """
 import csv
 import json
+import random
+import turtle
 
 
 class Base:
@@ -161,3 +163,49 @@ class Base:
             return instances
         except FileNotFoundError:
             return []
+
+    @staticmethod
+    def draw(list_rectangles, list_squares):
+        """Draws the list of rectangles and squares using the Turtle module.
+
+        Args:
+            list_rectangles (list): List of rectangle instances.
+            list_squares (list): List of square instances.
+        """
+
+        # Function to get a random color
+        def random_color():
+            return (random.random(), random.random(), random.random())
+
+        window = turtle.Screen()  # Set up the window
+        window.bgcolor(random_color())  # Set the window background color
+
+        pen = turtle.Turtle()  # Create a turtle object
+        speeds = ["fastest", "fast", "normal", "slow", "slowest"]
+        pen.speed(random.choice(speeds))  # Set turtle speed to slowest
+        pen.shape(random.choice(turtle.getshapes()))  # Set the cursor
+        pen.pensize(random.randint(1, 10))  # Set the pen size
+
+        # Function to draw a rectangle with color
+        def draw_rect(rect):
+            pen.up()
+            pen.goto(rect.x, rect.y)
+            pen.down()
+            pen.fillcolor(random_color())  # Set random fill color
+            pen.begin_fill()
+            for _ in range(2):
+                pen.forward(rect.width)
+                pen.left(90)
+                pen.forward(rect.height)
+                pen.left(90)
+            pen.end_fill()
+
+        # Draw each rectangle
+        for rect in list_rectangles:
+            draw_rect(rect)
+
+        # Draw each square
+        for square in list_squares:
+            draw_rect(square)  # Since a square is a special rectangle
+
+        window.mainloop()  # Allow the window to remain open
