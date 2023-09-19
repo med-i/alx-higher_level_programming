@@ -21,6 +21,41 @@ class TestSquareClass(unittest.TestCase):
         self.assertEqual(square.y, 0)
         self.assertEqual(square.id, 1)
 
+    def test_square_size_is_not_int(self):
+        """Test size with non-integer value."""
+        with self.assertRaisesRegex(TypeError, "width must be an integer"):
+            Square("1")
+
+    def test_square_x_is_not_int(self):
+        """Test x with non-integer value."""
+        with self.assertRaisesRegex(TypeError, "x must be an integer"):
+            Square(1, "2")
+
+    def test_square_y_is_not_int(self):
+        """Test y with non-integer value."""
+        with self.assertRaisesRegex(TypeError, "y must be an integer"):
+            Square(1, 2, "3")
+
+    def test_square_size_zero_value(self):
+        """Test size with zero value."""
+        with self.assertRaisesRegex(ValueError, "width must be > 0"):
+            Square(0)
+
+    def test_square_size_negative_value(self):
+        """Test size with negative value."""
+        with self.assertRaisesRegex(ValueError, "width must be > 0"):
+            Square(-1)
+
+    def test_square_x_negative_value(self):
+        """Test size with negative value."""
+        with self.assertRaisesRegex(ValueError, "x must be >= 0"):
+            Square(1, -2)
+
+    def test_square_y_negative_value(self):
+        """Test y with negative value."""
+        with self.assertRaisesRegex(ValueError, "y must be >= 0"):
+            Square(1, 2, -3)
+
     def test_str(self):
         """Test __str__ method."""
         square = Square(5)

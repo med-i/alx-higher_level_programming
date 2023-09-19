@@ -93,10 +93,28 @@ class TestBaseClass(unittest.TestCase):
             )
             self.assertEqual(file.read(), expected)
 
-    def test_save_to_file_empty_list(self):
-        """Test save empty list of objects."""
+    def test_save_to_file_empty_list_rectangle(self):
+        """Test save empty list of objects using a rectangle."""
         Rectangle.save_to_file([])
         with open("Rectangle.json", "r") as file:
+            self.assertEqual(file.read(), "[]")
+
+    def test_save_to_file_none_rectangle(self):
+        """Test save none using a rectangle."""
+        Rectangle.save_to_file(None)
+        with open("Rectangle.json", "r") as file:
+            self.assertEqual(file.read(), "[]")
+
+    def test_save_to_file_empty_list_square(self):
+        """Test save empty list of objects using a square."""
+        Square.save_to_file([])
+        with open("Square.json", "r") as file:
+            self.assertEqual(file.read(), "[]")
+
+    def test_save_to_file_none_square(self):
+        """Test save none using a square."""
+        Square.save_to_file(None)
+        with open("Square.json", "r") as file:
             self.assertEqual(file.read(), "[]")
 
     def test_from_json_string(self):
