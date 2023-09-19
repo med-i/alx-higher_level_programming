@@ -12,6 +12,13 @@ from models.square import Square
 class TestBaseClass(unittest.TestCase):
     """Define test cases for the Base class from models.base."""
 
+    def setUp(self):
+        """Delete JSON files, if they exist, to start fresh."""
+        if os.path.exists("Rectangle.json"):
+            os.remove("Rectangle.json")
+        if os.path.exists("Square.json"):
+            os.remove("Square.json")
+
     def test_0_id_no_argument(self):
         """Test Base's id assignment when no id argument is passed."""
         base1 = Base()
@@ -126,6 +133,48 @@ class TestBaseClass(unittest.TestCase):
         self.assertEqual(square1.x, square2.x)
         self.assertEqual(square1.y, square2.y)
         self.assertEqual(square1.id, square2.id)
+
+    def test_load_from_non_existent_file(self):
+        """Test load from a non-existent file."""
+        self.assertEqual(Rectangle.load_from_file(), [])
+
+    def test_load_rectangles_from_file(self):
+        """Test loading rectangles from a file."""
+        rect1 = Rectangle(10, 5, id=12)
+        rect2 = Rectangle(5, 5, 2, 8, 89)
+        list_rectangles = [rect1, rect2]
+        Rectangle.save_to_file(list_rectangles)
+        loaded_rectangles = Rectangle.load_from_file()
+
+        self.assertEqual(len(loaded_rectangles), 2)
+        for original, loaded in zip(list_rectangles, loaded_rectangles):
+            self.assertEqual(original.width, loaded.width)
+            self.assertEqual(original.height, loaded.height)
+            self.assertEqual(original.x, loaded.x)
+            self.assertEqual(original.y, loaded.y)
+            self.assertEqual(original.id, loaded.id)
+
+    def test_load_squares_from_file(self):
+        """Test loading squares from a file."""
+        square1 = Square(10, id=12)
+        square2 = Square(5, 2, 4, 89)
+        list_squares = [square1, square2]
+        Square.save_to_file(list_squares)
+        loaded_squares = Square.load_from_file()
+
+        self.assertEqual(len(loaded_squares), 2)
+        for original, loaded in zip(list_squares, loaded_squares):
+            self.assertEqual(original.size, loaded.size)
+            self.assertEqual(original.x, loaded.x)
+            self.assertEqual(original.y, loaded.y)
+            self.assertEqual(original.id, loaded.id)
+
+    def tearDown(self):
+        """Clean up JSON files after tests."""
+        if os.path.exists("Rectangle.json"):
+            os.remove("Rectangle.json")
+        if os.path.exists("Square.json"):
+            os.remove("Square.json")
 
 
 if __name__ == "__main__":
