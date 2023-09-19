@@ -106,5 +106,5 @@ class Base:
                 for dictionary in list_of_dicts:
                     instances.append(cls.create(**dictionary))
                 return instances
-        except:
+        except FileNotFoundError:
             return []
