@@ -31,6 +31,7 @@ class Base:
     @staticmethod
     def to_json_string(list_dictionaries):
         """Returns the JSON string representation of a list of dictionaries.
+
         Args:
             list_dictionaries (list): The list of dictionaries.
 
@@ -56,3 +57,17 @@ class Base:
 
         with open(filename, "w") as file:
             file.write(json_str)
+
+    @staticmethod
+    def from_json_string(json_string):
+        """Returns the list of the JSON string representation.
+
+        Args:
+            json_string (str): A string representation a list of dictionaries.
+
+        Returns:
+            The list represented by 'json_string'.
+        """
+        if not json_string:
+            return []
+        return json.loads(json_string)

@@ -83,6 +83,23 @@ class TestBaseClass(unittest.TestCase):
         with open("Rectangle.json", "r") as file:
             self.assertEqual(file.read(), "[]")
 
+    def test_from_json_string(self):
+        """Test conversion from JSON string to list."""
+        json_str = (
+            '[{"id": 1, "width": 10, "height": 7, "x": 2, "y": 8}, '
+            '{"id": 2, "width": 2, "height": 4, "x": 0, "y": 0}]'
+        )
+        list_output = Base.from_json_string(json_str)
+        expected = [
+            {"id": 1, "width": 10, "height": 7, "x": 2, "y": 8},
+            {"id": 2, "width": 2, "height": 4, "x": 0, "y": 0},
+        ]
+        self.assertEqual(list_output, expected)
+
+    def test_from_empty_json_string(self):
+        """Test conversion from an empty JSON string."""
+        self.assertEqual(Base.from_json_string(""), [])
+
 
 if __name__ == "__main__":
     unittest.main()
