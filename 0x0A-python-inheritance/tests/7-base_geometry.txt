@@ -59,3 +59,15 @@ Traceback (most recent call last):
 ...
 TypeError: age must be an integer
 
+# check integer_validator(): missing 1 arguments
+>>> bg.integer_validator("age")
+Traceback (most recent call last):
+...
+TypeError: BaseGeometry.integer_validator() missing 1 required positional argument: 'value'
+
+
+# check integer_validator(): no arguments
+>>> bg.integer_validator()
+Traceback (most recent call last):
+...
+TypeError: BaseGeometry.integer_validator() missing 2 required positional arguments: 'name' and 'value'
