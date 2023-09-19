@@ -12,7 +12,7 @@ from models.square import Square
 class TestBaseClass(unittest.TestCase):
     """Define test cases for the Base class from models.base."""
 
-    def test_id_no_argument(self):
+    def test_0_id_no_argument(self):
         """Test Base's id assignment when no id argument is passed."""
         base1 = Base()
         base2 = Base()
@@ -99,6 +99,33 @@ class TestBaseClass(unittest.TestCase):
     def test_from_empty_json_string(self):
         """Test conversion from an empty JSON string."""
         self.assertEqual(Base.from_json_string(""), [])
+
+    def test_create_rectangle(self):
+        """Test create Rectangle instance."""
+        rect1 = Rectangle(3, 5, 1, id=89)
+        dictionary = rect1.to_dictionary()
+        rect2 = Rectangle.create(**dictionary)
+        self.assertIsInstance(rect2, Rectangle)
+        self.assertNotEqual(rect1, rect2)
+        self.assertEqual(rect1.width, rect2.width)
+        self.assertEqual(rect1.height, rect2.height)
+        self.assertEqual(rect1.x, rect2.x)
+        self.assertEqual(rect1.y, rect2.y)
+        self.assertEqual(rect1.id, rect2.id)
+
+    def test_create_square(self):
+        """Test create Square instance."""
+        square1 = Square(5, 1, 2, 89)
+        dictionary = square1.to_dictionary()
+        square2 = Square.create(**dictionary)
+        self.assertIsInstance(square2, Square)
+        self.assertNotEqual(square1, square2)
+        self.assertEqual(square1.size, square2.size)
+        self.assertEqual(square1.width, square2.width)
+        self.assertEqual(square1.height, square2.height)
+        self.assertEqual(square1.x, square2.x)
+        self.assertEqual(square1.y, square2.y)
+        self.assertEqual(square1.id, square2.id)
 
 
 if __name__ == "__main__":
