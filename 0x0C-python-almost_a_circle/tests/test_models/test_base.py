@@ -3,8 +3,10 @@ This module provides tests for the Base class.
 """
 
 import unittest
+import os
 from models.base import Base
 from models.rectangle import Rectangle
+from models.square import Square
 
 
 class TestBaseClass(unittest.TestCase):
@@ -50,6 +52,36 @@ class TestBaseClass(unittest.TestCase):
     def test_to_json_string_empty_list(self):
         """Test with empty list."""
         self.assertEqual(Base.to_json_string([]), "[]")
+
+    def test_save_to_file_rectangles(self):
+        """Test save multiple rectangles."""
+        rect1 = Rectangle(10, 7, 2, 8, 12)
+        rect2 = Rectangle(2, 4, id=89)
+        Rectangle.save_to_file([rect1, rect2])
+        with open("Rectangle.json", "r") as file:
+            expected = (
+                '[{"x": 2, "y": 8, "id": 12, "height": 7, "width": 10}, '
+                '{"x": 0, "y": 0, "id": 89, "height": 4, "width": 2}]'
+            )
+            self.assertEqual(file.read(), expected)
+
+    def test_save_to_file_squares(self):
+        """Test save multiple squares."""
+        square1 = Square(10, id=12)
+        square2 = Square(5, 3, 4, 89)
+        Square.save_to_file([square1, square2])
+        with open("Square.json", "r") as file:
+            expected = (
+                '[{"id": 12, "x": 0, "size": 10, "y": 0}, '
+                '{"id": 89, "x": 3, "size": 5, "y": 4}]'
+            )
+            self.assertEqual(file.read(), expected)
+
+    def test_save_to_file_empty_list(self):
+        """Test save empty list of objects."""
+        Rectangle.save_to_file([])
+        with open("Rectangle.json", "r") as file:
+            self.assertEqual(file.read(), "[]")
 
 
 if __name__ == "__main__":
