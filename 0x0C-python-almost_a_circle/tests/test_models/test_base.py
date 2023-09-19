@@ -13,11 +13,20 @@ class TestBaseClass(unittest.TestCase):
     """Define test cases for the Base class from models.base."""
 
     def setUp(self):
-        """Delete JSON files, if they exist, to start fresh."""
-        if os.path.exists("Rectangle.json"):
-            os.remove("Rectangle.json")
-        if os.path.exists("Square.json"):
-            os.remove("Square.json")
+        """Delete JSON and CSV files, if they exist, to start fresh."""
+        files_to_remove = [
+            "Rectangle.json",
+            "Square.json",
+            "Rectangle.csv",
+            "Square.csv",
+        ]
+        for file in files_to_remove:
+            if os.path.exists(file):
+                os.remove(file)
+
+    def tearDown(self):
+        """Clean up JSON and CSV files after tests."""
+        TestBaseClass.setUp(self)
 
     def test_0_id_no_argument(self):
         """Test Base's id assignment when no id argument is passed."""
@@ -169,12 +178,53 @@ class TestBaseClass(unittest.TestCase):
             self.assertEqual(original.y, loaded.y)
             self.assertEqual(original.id, loaded.id)
 
-    def tearDown(self):
-        """Clean up JSON files after tests."""
-        if os.path.exists("Rectangle.json"):
-            os.remove("Rectangle.json")
-        if os.path.exists("Square.json"):
-            os.remove("Square.json")
+    def test_rectangle_save_to_csv(self):
+        """Test save a rectangle to a CSV file."""
+        rect1 = Rectangle(10, 7, 2, 8, 5)
+        rect2 = Rectangle(2, 4)
+        list_rectangles = [rect1, rect2]
+        Rectangle.save_to_file_csv(list_rectangles)
+        self.assertTrue(os.path.exists("Rectangle.csv"))
+
+    def test_square_save_to_csv(self):
+        """Test save a square to a CSV file."""
+        s1 = Square(5, 1, 2, 6)
+        s2 = Square(7, 2, 3)
+        list_squares = [s1, s2]
+        Square.save_to_file_csv(list_squares)
+        self.assertTrue(os.path.exists("Square.csv"))
+
+    def test_rectangle_load_from_csv(self):
+        """Test load a rectangle from a CSV file."""
+        rect1 = Rectangle(10, 7, 2, 8, 5)
+        rect2 = Rectangle(2, 4)
+        list_rectangles_input = [rect1, rect2]
+        Rectangle.save_to_file_csv(list_rectangles_input)
+        list_rectangles_output = Rectangle.load_from_file_csv()
+
+        self.assertEqual(
+            len(list_rectangles_input), len(list_rectangles_output)
+        )
+        for i in range(len(list_rectangles_input)):
+            self.assertEqual(
+                list_rectangles_input[i].to_dictionary(),
+                list_rectangles_output[i].to_dictionary(),
+            )
+
+    def test_square_load_from_csv(self):
+        """Test load a square from a CSV file."""
+        s1 = Square(5, 1, 2, 6)
+        s2 = Square(7, 2, 3)
+        list_squares_input = [s1, s2]
+        Square.save_to_file_csv(list_squares_input)
+        list_squares_output = Square.load_from_file_csv()
+
+        self.assertEqual(len(list_squares_input), len(list_squares_output))
+        for i in range(len(list_squares_input)):
+            self.assertEqual(
+                list_squares_input[i].to_dictionary(),
+                list_squares_output[i].to_dictionary(),
+            )
 
 
 if __name__ == "__main__":
