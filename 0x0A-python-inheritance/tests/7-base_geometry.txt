@@ -16,14 +16,46 @@ Exception: area() is not implemented
 # check integer_validator()
 >>> bg.integer_validator("age", 31)
 
+# check integer_validator(): value less than 0
+>>> bg.integer_validator("age", -31)
+Traceback (most recent call last):
+...
+ValueError: age must be greater than 0
+
+# check integer_validator(): value is 0
+>>> bg.integer_validator("age", 0)
+Traceback (most recent call last):
+...
+ValueError: age must be greater than 0
+
 # check integer_validator(): value not integer
 >>> bg.integer_validator("age", "my_age")
 Traceback (most recent call last):
 ...
 TypeError: age must be an integer
 
-# check integer_validator(): value less than 0
->>> bg.integer_validator("age", -31)
+>>> bg.integer_validator("age", (4,))
 Traceback (most recent call last):
 ...
-ValueError: age must be greater than 0
+TypeError: age must be an integer
+
+>>> bg.integer_validator("age", [3])
+Traceback (most recent call last):
+...
+TypeError: age must be an integer
+
+>>> bg.integer_validator("age", True)
+Traceback (most recent call last):
+...
+TypeError: age must be an integer
+
+>>> bg.integer_validator("age", {3, 4})
+Traceback (most recent call last):
+...
+TypeError: age must be an integer
+
+>>> bg.integer_validator("age", None)
+Traceback (most recent call last):
+...
+TypeError: age must be an integer
+
