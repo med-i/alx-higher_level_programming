@@ -3,7 +3,7 @@ const args = process.argv.slice(2);
 const size = args.length;
 let result = '';
 
-if (size === 0) result = 'No arguments';
+if (size === 0) result = 'No argument';
 else if (size === 1) result = 'Argument found';
 else result = 'Arguments found';
 
