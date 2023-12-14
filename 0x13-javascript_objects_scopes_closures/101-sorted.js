@@ -3,12 +3,15 @@ const { dict } = require('./101-data');
 
 const newDict = {};
 
-for (const [key, value] of Object.entries(dict)) {
-  if (newDict[value] === undefined) {
-    newDict[value] = [];
+for (const [userId, occurrence] of Object.entries(dict)) {
+  if (!newDict[occurrence]) {
+    newDict[occurrence] = [];
   }
+  newDict[occurrence].push(userId);
+}
 
-  newDict[value].push(key);
+for (const occurrence in newDict) {
+  newDict[occurrence].sort((a, b) => a - b);
 }
 
 console.log(newDict);
