@@ -18,8 +18,7 @@ const fileA = readFile(args[0]);
 const fileB = readFile(args[1]);
 
 try {
-  fs.writeFileSync(args[2], fileA);
-  fs.appendFileSync(args[2], fileB);
+  fs.writeFileSync(args[2], fileA + fileB);
 } catch (err) {
   console.error(err);
 }
