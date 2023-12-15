@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """
-This module
+This script takes in an argument and displays all values in the states table
+of hbtn_0e_0_usa where name matches the argument.
 """
 
 import sys
@@ -8,7 +9,10 @@ import MySQLdb
 
 
 def main():
-    """Main"""
+    """
+    Ensures that the script runs only when executed directly,
+    not when imported as a module.
+    """
     username = sys.argv[1]
     password = sys.argv[2]
     db_name = sys.argv[3]
@@ -23,7 +27,11 @@ def main():
         charset="utf8",
     )
     cur = conn.cursor()
-    query = "SELECT id, name FROM states WHERE name = '{}'".format(state_name)
+    query = (
+        "SELECT id, name FROM states WHERE name = '{}' ORDER BY id ASC".format(
+            state_name
+        )
+    )
     cur.execute(query)
     query_rows = cur.fetchall()
     for row in query_rows:

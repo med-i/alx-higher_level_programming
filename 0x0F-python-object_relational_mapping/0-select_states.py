@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-This module
+This script lists all states from the database hbtn_0e_0_usa.
 """
 
 import sys
@@ -8,7 +8,10 @@ import MySQLdb
 
 
 def main():
-    """Main"""
+    """
+    Ensures that the script runs only when executed directly,
+    not when imported as a module.
+    """
     username = sys.argv[1]
     password = sys.argv[2]
     db_name = sys.argv[3]

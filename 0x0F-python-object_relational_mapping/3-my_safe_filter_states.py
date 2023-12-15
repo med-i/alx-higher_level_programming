@@ -1,6 +1,8 @@
 #!/usr/bin/python3
 """
-This module
+This script takes in arguments and displays all values in the states table
+of hbtn_0e_0_usa where name matches the argument.
+But this time, write one that is safe from MySQL injections!
 """
 
 import sys
@@ -8,7 +10,10 @@ import MySQLdb
 
 
 def main():
-    """Main"""
+    """
+    Ensures that the script runs only when executed directly,
+    not when imported as a module.
+    """
     username = sys.argv[1]
     password = sys.argv[2]
     db_name = sys.argv[3]
