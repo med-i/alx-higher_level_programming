@@ -25,7 +25,7 @@ def main():
         charset="utf8",
     )
     cur = conn.cursor()
-    cur.execute("SELECT id, name FROM states ORDER BY id")
+    cur.execute("SELECT * FROM states ORDER BY id")
     query_rows = cur.fetchall()
     for row in query_rows:
         print(row)

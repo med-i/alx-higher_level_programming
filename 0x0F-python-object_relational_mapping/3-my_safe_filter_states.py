@@ -28,7 +28,7 @@ def main():
         charset="utf8",
     )
     cur = conn.cursor()
-    cur.execute("SELECT id, name FROM states WHERE name = %s", (state_name,))
+    cur.execute("SELECT * FROM states WHERE BINARY name = %s", (state_name,))
     query_rows = cur.fetchall()
     for row in query_rows:
         print(row)
