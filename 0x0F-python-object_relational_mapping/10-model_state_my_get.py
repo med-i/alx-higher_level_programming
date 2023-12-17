@@ -25,12 +25,7 @@ if __name__ == "__main__":
     Session = sessionmaker(bind=engine)
     session = Session()
 
-    state = (
-        session.query(State)
-        .filter(State.name == state_name)
-        .order_by(State.id)
-        .first()
-    )
+    state = session.query(State).filter(State.name == state_name).first()
 
     print(f"{state.id}: {state.name}" if state else "Not found")
 
