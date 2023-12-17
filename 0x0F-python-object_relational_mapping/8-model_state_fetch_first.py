@@ -11,11 +11,11 @@ from model_state import Base, State
 if __name__ == "__main__":
     if len(sys.argv) == 4:
         username = sys.argv[1]
-        passowrd = sys.argv[2]
+        password = sys.argv[2]
         dbname = sys.argv[3]
 
         engine = create_engine(
-            f"mysql+mysqldb://{username}:{passowrd}@localhost:3306/{dbname}",
+            f"mysql+mysqldb://{username}:{password}@localhost:3306/{dbname}",
             pool_pre_ping=True,
         )
 
@@ -26,4 +26,10 @@ if __name__ == "__main__":
 
         first_state = session.query(State).order_by(State.id).first()
 
-        print(f"{first_state.id}: {first_state.name}" if first_state else "")
+        print(
+            f"{first_state.id}: {first_state.name}"
+            if first_state
+            else "Nothing"
+        )
+
+        session.close()
