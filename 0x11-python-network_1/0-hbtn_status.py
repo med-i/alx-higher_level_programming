@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-This script fetches a URL.
+This script fetches https://alx-intranet.hbtn.io/status.
 """
 
 from urllib import request
