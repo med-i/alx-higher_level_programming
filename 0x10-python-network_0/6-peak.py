@@ -6,18 +6,13 @@ This module define the find_peak method
 
 def find_peak(list_of_integers):
     """Finds a peak in a list of unsorted integers"""
-    if not list_of_integers:
+    size = len(list_of_integers)
+    if size == 0:
         return None
 
-    size = len(list_of_integers)
-    if size == 1:
-        return list_of_integers[0]
-    if size == 2:
-        return max(list_of_integers[0], list_of_integers[1])
+    peak = list_of_integers[0]
+    for i in range(size):
+        if list_of_integers[i] > peak:
+            peak = list_of_integers[i]
 
-    for i in range(1, size - 1):
-        previous = list_of_integers[i-1]
-        current = list_of_integers[i]
-        next = list_of_integers[i+1]
-        if current >= previous and current >= next:
-            return current
+    return peak
