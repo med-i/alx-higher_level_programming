@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-Task 0
+This script fetches a URL
 """
 
 from urllib import request
