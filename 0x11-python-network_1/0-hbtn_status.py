@@ -3,7 +3,7 @@
 This script fetches a URL
 """
 
-import urllib
+import urllib.request
 
 URL = "https://alx-intranet.hbtn.io/status"
 
