@@ -3,12 +3,12 @@
 This script fetches a URL
 """
 
-from urllib import request
+import urllib
 
 URL = "https://alx-intranet.hbtn.io/status"
 
 if __name__ == "__main__":
-    with request.urlopen(URL) as response:
+    with urllib.request.urlopen(URL) as response:
         body = response.read()
         print("Body response:\n"+
                 f"\t- type: {type(body)}\n"+
