@@ -4,7 +4,7 @@ const fs = require('fs');
 const file = process.argv[2];
 const string = process.argv[3];
 
-if (!file || !string) {
+if (!file || string === undefined) {
   console.error(`Error: ${!file ? 'No file path provided' : 'No string provided'}`);
   process.exit(1);
 }
